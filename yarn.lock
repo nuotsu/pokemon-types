@@ -150,6 +150,11 @@
   dependencies:
     "@floating-ui/dom" "^1.0.5"
 
+"@iarna/toml@^2.2.5":
+  version "2.2.5"
+  resolved "https://registry.yarnpkg.com/@iarna/toml/-/toml-2.2.5.tgz#b32366c89b43c6f8cefbdefac778b9c828e3ba8c"
+  integrity sha512-trnsAYxU3xnS1gPHPyU961coFyLkh4gAD/0zQ5mymY4yOZ+CYvsPqUbOFSw0aDM4y0tV7tiFxL/1XfXPNC6IPg==
+
 "@jridgewell/sourcemap-codec@^1.4.13":
   version "1.4.14"
   resolved "https://registry.yarnpkg.com/@jridgewell/sourcemap-codec/-/sourcemap-codec-1.4.14.tgz#add4c98d341472a289190b424efbdb096991bb24"
@@ -311,6 +316,15 @@
   integrity sha512-qxH46Oqqn40998wTmnbffONI0HcW/kiZ3OIjZoysjONne+LU4uEsG425MZ2RHDxmR04zxhsdjCAsn6B4du8D7w==
   dependencies:
     import-meta-resolve "^2.2.0"
+
+"@sveltejs/adapter-netlify@^1.0.0-next.85":
+  version "1.0.0-next.85"
+  resolved "https://registry.yarnpkg.com/@sveltejs/adapter-netlify/-/adapter-netlify-1.0.0-next.85.tgz#17425ffaf32d4c88fa4fff75f0e6d19720da1b40"
+  integrity sha512-9g+aw9R+mNSr75UhKUPX1uFzcky2TVSs6sf5NdTWlaGmm8TeUIydiTSKXXByEM2JHd3m3I132X0SWuM+TqSbPw==
+  dependencies:
+    "@iarna/toml" "^2.2.5"
+    esbuild "^0.16.3"
+    set-cookie-parser "^2.5.1"
 
 "@sveltejs/kit@next":
   version "1.0.0-next.581"
