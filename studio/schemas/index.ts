@@ -1,7 +1,7 @@
 // documents
-import attribute from './documents/attribute'
+import neoType from './documents/neoType'
 
 export const schemaTypes = [
 	// documents
-	attribute,
+	neoType,
 ]

@@ -3,12 +3,12 @@ import groq from 'groq'
 
 export async function load() {
 	return {
-		types: await client.fetch(groq`*[_type == 'attribute']{
+		types: await client.fetch(groq`*[_type == 'neoType']|order(order){
 			...,
-			effectiveness{
-				weakTo[]->{ _id, name, emoji },
-				resistantTo[]->{ _id, name, emoji },
-				immuneTo[]->{ _id, name, emoji }
+			compatibility{
+				weakness[]->|order(order){ _id, name, emoji },
+				resistance[]->|order(order){ _id, name, emoji },
+				immunity[]->|order(order){ _id, name, emoji }
 			}
 		}`)
 	}

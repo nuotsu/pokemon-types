@@ -1,4 +1,4 @@
-<h1>Types</h1>
+<h1>Neo Types</h1>
 
 <div class="overflow-x-auto">
 	<table>
@@ -20,13 +20,13 @@
 						<span>{attack.emoji}</span>
 					</th>
 
-					{#each types as { effectiveness }}
+					{#each types as { compatibility }}
 						<td>
-							{#if effectiveness.weakTo?.map(t => t._id).includes(attack._id)}
+							{#if compatibility?.weakness?.map(t => t._id).includes(attack._id)}
 								<span>⭕️</span>
-							{:else if effectiveness.resistantTo?.map(t => t._id).includes(attack._id)}
+							{:else if compatibility?.resistance?.map(t => t._id).includes(attack._id)}
 								<span>🔺</span>
-							{:else if effectiveness.immuneTo?.map(t => t._id).includes(attack._id)}
+							{:else if compatibility?.immunity?.map(t => t._id).includes(attack._id)}
 								<span>❌</span>
 							{/if}
 						</td>
@@ -54,4 +54,6 @@
 	export let data = {}
 
 	const { types } = data
+
+	console.log(types)
 </script>
