@@ -1,59 +1,31 @@
 <h1>Neo Types</h1>
 
-<div class="overflow-x-auto">
-	<table>
-		<thead>
-			<tr>
-				<th>👉</th>
-				{#each types as defense}
-					<th>
-						<span>{defense.emoji}</span>
-					</th>
-				{/each}
-			</tr>
-		</thead>
+<details>
+	<summary>Type Chart</summary>
+	<TypeChart {types} />
+</details>
 
-		<tbody>
-			{#each types as attack}
-				<tr class="hover:bg-ink/10">
-					<th>
-						<span>{attack.emoji}</span>
-					</th>
+<section>
+	<TypeSelector label="Type 1:" {types} bind:value={$type1} other={$type2} />
+	<TypeSelector label="Type 2:" {types} bind:value={$type2} other={$type1} />
 
-					{#each types as { compatibility }}
-						<td>
-							{#if compatibility?.weakness?.map(t => t._id).includes(attack._id)}
-								<span>⭕️</span>
-							{:else if compatibility?.resistance?.map(t => t._id).includes(attack._id)}
-								<span>🔺</span>
-							{:else if compatibility?.immunity?.map(t => t._id).includes(attack._id)}
-								<span>❌</span>
-							{/if}
-						</td>
-					{/each}
-				</tr>
-			{/each}
-		</tbody>
-	</table>
-</div>
-
-<style>
-	th, td {
-		border: 1px solid;
-	}
-
-	span {
-		display: grid;
-		place-content: center;
-		aspect-ratio: 1;
-		width: 2em;
-	}
-</style>
+	<CompatibilityReport {types} />
+	<StatsReport {types} />
+</section>
 
 <script>
-	export let data = {}
+	import TypeChart from '$lib/TypeChart.svelte'
+	import TypeSelector from '$lib/TypeSelector.svelte'
+	import CompatibilityReport from '$lib/CompatibilityReport.svelte'
+	import StatsReport from '$lib/StatsReport.svelte'
+
+	export let data
 
 	const { types } = data
+</script>
 
-	console.log(types)
+<script context="module">
+	import { writable } from 'svelte/store'
+
+	export const [type1, type2] = [writable(''), writable('')]
 </script>

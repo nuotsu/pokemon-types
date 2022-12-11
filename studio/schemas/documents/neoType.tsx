@@ -112,10 +112,13 @@ export default defineType({
 	preview: {
 		select: {
 			title: 'name.en',
-			subtitle: 'name.jp',
+			// subtitle: 'name.jp',
+			inc: 'performance.inc',
+			dec: 'performance.dec',
 			emoji: 'emoji',
 		},
-		prepare: ({ emoji, ...selection }) => ({
+		prepare: ({ emoji, inc, dec, ...selection }) => ({
+			subtitle: [inc, dec].filter(Boolean).join(' / '),
 			media: <>{emoji}</>,
 			...selection,
 		})
