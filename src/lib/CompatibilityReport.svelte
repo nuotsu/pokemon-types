@@ -48,15 +48,15 @@
 
 	export let types
 
-	$: weakness = getCompatibility('weakness', $type1, $type2)
-	$: resistance = getCompatibility('resistance', $type1, $type2)
-	$: immunity = getCompatibility('immunity', $type1, $type2).flatMap(i => i)
+	$: weakness = getCompatibility('weakness')
+	$: resistance = getCompatibility('resistance')
+	$: immunity = getCompatibility('immunity').flatMap(i => i)
 	$: normal = weakness[0].filter(([emoji]) => resistance[0].includes(emoji))
 
-	function getCompatibility(c, t1, t2) {
+	$: getCompatibility = c => {
 		const list = [
-			...types.find(type => type._id === t1)?.compatibility[c]?.map(type => type.emoji) || [],
-			...types.find(type => type._id === t2)?.compatibility[c]?.map(type => type.emoji) || []
+			...types.find(type => type._id === $type1)?.compatibility[c]?.map(type => type.emoji) || [],
+			...types.find(type => type._id === $type2)?.compatibility[c]?.map(type => type.emoji) || []
 		]
 		const instances = {}
 
