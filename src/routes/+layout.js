@@ -7,7 +7,11 @@ export async function load() {
 			...,
 			weakness[]->|order(order){ _id, name, emoji },
 			resistance[]->|order(order){ _id, name, emoji },
-			immunity[]->|order(order){ _id, name, emoji }
+			immunity[]->|order(order){ _id, name, emoji },
+			spec{
+				inc->,
+				dec->
+			}
 		},
 		'specs': *[_type == 'spec']|order(order)
 	}`)

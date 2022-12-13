@@ -1,9 +1,11 @@
 <dl>
 	{#each specs as spec}
+		{@const factor = getSpec(spec)}
+
 		<dt>{spec.name}</dt>
 		<dd>
-			<meter min="0" max="100" value={75} />
-			{getPerformance(spec)}
+			<meter min="0" max="100" value={75 * factor.value} />
+			{factor.arrows}
 		</dd>
 	{/each}
 </dl>
@@ -23,18 +25,26 @@
 <script>
 	export let type1, type2, specs
 
-	const up = 1.1
-	const down = 0.9
+	const FACTOR = 0.1
+	const UP = 1 + FACTOR
+	const DOWN = 1 - FACTOR
 
-	$: t1 = type1?.spec
-	$: t2 = type2?.spec
+	$: getSpec = ({ name }) => {
+		const list = [
+			type1?.spec?.inc.name === name && { factor: UP, display: '🔺' },
+			type1?.spec?.dec.name === name && { factor: DOWN, display: '🔻' },
+			type2?.spec?.inc.name === name && { factor: UP, display: '🔺' },
+			type2?.spec?.dec.name === name && { factor: DOWN, display: '🔻' },
+		].filter(Boolean)
 
-	$: getPerformance = ({ name }) => {
-		return [
-			t1?.inc.name === name && '🔺',
-			t1?.dec.name === name && '🔻',
-			t2?.inc.name === name && '🔺',
-			t2?.dec.name === name && '🔻',
-		].filter(Boolean).join('')
+		return {
+			arrows: list.map(i => i.display).join(''),
+			value: Number(list
+				.filter(Boolean)
+				.map(i => i.factor)
+				.reduce((acc, cur) => acc * cur, 1)
+				.toFixed(1)
+			)
+		}
 	}
 </script>
