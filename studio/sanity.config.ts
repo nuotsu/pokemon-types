@@ -16,7 +16,8 @@ export default defineConfig({
 				S.list()
 					.title('Content')
 					.items([
-						S.documentTypeListItem('neoType').title('Neo Types')
+						S.documentTypeListItem('neoType').title('Neo Types'),
+						S.documentTypeListItem('spec').title('Specs'),
 					])
 		}),
 		visionTool(),

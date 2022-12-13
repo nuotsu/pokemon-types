@@ -1,10 +1,19 @@
 import React from 'react'
 import { defineField, defineType } from 'sanity'
+import { VscBug } from 'react-icons/vsc'
 
 export default defineType({
 	name: 'neoType',
 	title: 'Neo Type',
 	type: 'document',
+	icon: VscBug,
+	fieldsets: [
+		{
+			name: 'compatibility',
+			title: 'Compatibility',
+			options: { columns: 2 },
+		},
+	],
 	fields: [
 		defineField({
 			name: 'order',
@@ -34,91 +43,70 @@ export default defineType({
 			type: 'string',
 		}),
 		defineField({
-			name: 'compatibility',
+			name: 'weakness',
+			description: '2x',
+			fieldset: 'compatibility',
+			type: 'array',
+			of: [
+				{
+					type: 'reference',
+					to: [{ type: 'neoType' }]
+				}
+			]
+		}),
+		defineField({
+			name: 'resistance',
+			description: '0.5x',
+			fieldset: 'compatibility',
+			type: 'array',
+			of: [
+				{
+					type: 'reference',
+					to: [{ type: 'neoType' }]
+				}
+			]
+		}),
+		defineField({
+			name: 'immunity',
+			description: '0x',
+			fieldset: 'compatibility',
+			type: 'array',
+			of: [
+				{
+					type: 'reference',
+					to: [{ type: 'neoType' }]
+				}
+			]
+		}),
+		defineField({
+			name: 'spec',
 			type: 'object',
 			fields: [
 				defineField({
-					name: 'weakness',
-					description: '2x',
-					type: 'array',
-					of: [
-						{
-							type: 'reference',
-							to: [{ type: 'neoType' }]
-						}
-					]
+					name: 'inc',
+					title: 'Increase 🔺',
+					type: 'reference',
+					to: [{ type: 'spec' }]
 				}),
 				defineField({
-					name: 'resistance',
-					description: '0.5x',
-					type: 'array',
-					of: [
-						{
-							type: 'reference',
-							to: [{ type: 'neoType' }]
-						}
-					]
-				}),
-				defineField({
-					name: 'immunity',
-					description: '0x',
-					type: 'array',
-					of: [
-						{
-							type: 'reference',
-							to: [{ type: 'neoType' }]
-						}
-					]
+					name: 'dec',
+					title: 'Decrease 🔻',
+					type: 'reference',
+					to: [{ type: 'spec' }]
 				}),
 			],
 			options: {
 				columns: 2,
 			}
 		}),
-		defineField({
-			name: 'performance',
-			type: 'object',
-			fields: [
-				defineField({
-					name: 'inc',
-					type: 'string',
-					options: {
-						list: [
-							{ title: 'HP', value: 'HP' },
-							'Attack',
-							'Defense',
-							'Speed',
-						]
-					},
-				}),
-				defineField({
-					name: 'dec',
-					type: 'string',
-					options: {
-						list: [
-							{ title: 'HP', value: 'HP' },
-							'Attack',
-							'Defense',
-							'Speed',
-						]
-					},
-				}),
-			],
-			options: {
-				columns: 2,
-			}
-		})
 	],
 	preview: {
 		select: {
 			title: 'name.en',
-			// subtitle: 'name.jp',
-			inc: 'performance.inc',
-			dec: 'performance.dec',
+			subtitle: 'name.jp',
 			emoji: 'emoji',
 		},
-		prepare: ({ emoji, inc, dec, ...selection }) => ({
-			subtitle: [inc, dec].filter(Boolean).join(' / '),
+		prepare: ({ emoji, ...selection }) => ({
 			media: <>{emoji}</>,
 			...selection,
 		})

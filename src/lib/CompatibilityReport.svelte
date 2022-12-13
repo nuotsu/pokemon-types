@@ -7,13 +7,13 @@
 	</dd>
 	<dt>Weakness (2x):</dt>
 	<dd>
-		{#each weakness[0].filter(w => !normal.includes(w) && !immunity.includes(w)) as emoji}
+		{#each weakness_1 as emoji}
 			<span>{emoji}</span>
 		{/each}
 	</dd>
 	<dt>Resistance (0.5x):</dt>
 	<dd>
-		{#each resistance[0].filter(r => !normal.includes(r) && !immunity.includes(r)) as emoji}
+		{#each resistance_1 as emoji}
 			<span>{emoji}</span>
 		{/each}
 	</dd>
@@ -44,22 +44,15 @@
 </style>
 
 <script>
-	import { type1, type2 } from '../routes/+page.svelte'
+	export let type1, type2
 
-	export let types
-
-	$: weakness = getCompatibility('weakness')
-	$: resistance = getCompatibility('resistance')
-	$: immunity = getCompatibility('immunity').flatMap(i => i)
-	$: normal = weakness[0].filter(([emoji]) => resistance[0].includes(emoji))
-
-	$: getCompatibility = c => {
+	$: getCompatibility = (c) => {
 		const list = [
-			...types.find(type => type._id === $type1)?.compatibility[c]?.map(type => type.emoji) || [],
-			...types.find(type => type._id === $type2)?.compatibility[c]?.map(type => type.emoji) || []
-		]
-		const instances = {}
+			type1[c]?.map(t => t.emoji),
+			type2[c]?.map(t => t.emoji),
+		].flatMap(i => i).filter(Boolean)
 
+		const instances = {}
 		for (let i of list) {
 			instances[i] = instances[i] ? instances[i] + 1 : 1
 		}
@@ -69,4 +62,12 @@
 			Object.entries(instances).filter(([, instance]) => instance === 2).map(([emoji]) => emoji),
 		]
 	}
+
+	$: weakness = getCompatibility('weakness')
+	$: resistance = getCompatibility('resistance')
+	$: immunity = getCompatibility('immunity').flatMap(i => i)
+	$: normal = weakness[0].filter(([emoji]) => resistance[0].includes(emoji))
+
+	$: weakness_1 = weakness[0].filter(w => !normal.includes(w) && !immunity.includes(w))
+	$: resistance_1 = resistance[0].filter(r => !normal.includes(r) && !immunity.includes(r))
 </script>

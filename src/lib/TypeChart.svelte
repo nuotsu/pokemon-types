@@ -18,13 +18,13 @@
 						<span>{attack.emoji}</span>
 					</th>
 
-					{#each types as { compatibility }}
+					{#each types as type}
 						<td>
-							{#if compatibility?.weakness?.map(t => t._id).includes(attack._id)}
+							{#if type?.weakness?.map(t => t._id).includes(attack._id)}
 								<span>⭕️</span>
-							{:else if compatibility?.resistance?.map(t => t._id).includes(attack._id)}
+							{:else if type?.resistance?.map(t => t._id).includes(attack._id)}
 								<span>🔺</span>
-							{:else if compatibility?.immunity?.map(t => t._id).includes(attack._id)}
+							{:else if type?.immunity?.map(t => t._id).includes(attack._id)}
 								<span>❌</span>
 							{/if}
 						</td>

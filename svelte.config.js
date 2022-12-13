@@ -5,6 +5,10 @@ import preprocess from 'svelte-preprocess'
 const config = {
 	kit: {
 		adapter: adapter(),
+		alias: {
+			'$routes': 'src/routes',
+			'$utils': 'src/utils',
+		}
 	},
 	preprocess: [
 		preprocess({
