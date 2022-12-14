@@ -1,11 +1,11 @@
-<div class="overflow-x-auto">
-	<table>
+<div class="overflow-x-auto overflow-y-hidden p-px">
+	<table bind:clientHeight style:--height="{clientHeight}px">
 		<thead>
 			<tr>
 				<th>👉</th>
-				{#each types as defense}
-					<th>
-						<span>{defense.emoji}</span>
+				{#each types as type}
+					<th class="column">
+						<Type {...type} />
 					</th>
 				{/each}
 			</tr>
@@ -15,17 +15,17 @@
 			{#each types as attack}
 				<tr class="hover:bg-ink/10">
 					<th>
-						<span>{attack.emoji}</span>
+						<Type {...attack} />
 					</th>
 
 					{#each types as type}
-						<td>
+						<td class="column">
 							{#if type?.weakness?.map(t => t._id).includes(attack._id)}
-								<span>⭕️</span>
+								⭕️
 							{:else if type?.resistance?.map(t => t._id).includes(attack._id)}
-								<span>🔺</span>
+								🔺
 							{:else if type?.immunity?.map(t => t._id).includes(attack._id)}
-								<span>❌</span>
+								❌
 							{/if}
 						</td>
 					{/each}
@@ -38,9 +38,21 @@
 <style>
 	th, td {
 		border: 1px solid;
+		text-align: center;
 	}
 
-	span {
+	.column {
+		position: relative;
+	}
+	.column:hover::after {
+		content: '';
+		pointer-events: none;
+		position: absolute;
+		inset: calc(-1 * var(--height, 0px)) 0;
+		@apply bg-ink/10;
+	}
+
+	table :global(neo-type) {
 		display: grid;
 		place-content: center;
 		aspect-ratio: 1;
@@ -49,5 +61,9 @@
 </style>
 
 <script>
+	import Type from './Type.svelte'
+
 	export let types
+
+	let clientHeight = 0
 </script>

@@ -1,7 +1,7 @@
 <dt>{label}</dt>
 <dd>
-	{#each list as { emoji, name }}
-		<span title={name.en}>{emoji}</span>
+	{#each list as type}
+		<Type {...type} />
 	{/each}
 </dd>
 
@@ -12,5 +12,7 @@
 </style>
 
 <script>
+	import Type from './Type.svelte'
+
 	export let label, list
 </script>

@@ -1,8 +1,8 @@
 <dl>
 	<Compatibility label="Weakness (4x):" list={weakness[1]} />
-	<Compatibility label="Weakness (2x):" list={weakness_1} />
+	<Compatibility label="(2x):" list={weakness_1} />
 	<Compatibility label="Resistance (0.5x):" list={resistance_1} />
-	<Compatibility label="Resistance (0.25x):" list={resistance[1]} />
+	<Compatibility label="(0.25x):" list={resistance[1]} />
 	<Compatibility label="Immunity (0x):" list={immunity} />
 </dl>
 
@@ -25,10 +25,10 @@
 			.filter(Boolean)
 
 		const instances = {}
-		for (let { emoji, name } of list) {
+		for (let { emoji, ...type } of list) {
 			instances[emoji] = [
 				instances[emoji] ? instances[emoji][0] + 1 : 1,
-				name
+				type
 			]
 		}
 
@@ -49,7 +49,7 @@
 	function processInstances(instances, count) {
 		return Object.entries(instances)
 			.filter(([, [instance]]) => instance === count)
-			.map(([emoji, [, name]]) => ({ emoji, name }))
+			.map(([emoji, [, type]]) => ({ emoji, ...type }))
 	}
 
 	function processEmoji(list, emoji) {

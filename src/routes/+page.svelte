@@ -1,9 +1,8 @@
 <h1>Neo Types</h1>
 
-<details>
-	<summary>Type Chart</summary>
+<Dialog trigger="Type Chart">
 	<TypeChart {types} />
-</details>
+</Dialog>
 
 <section>
 	<TypeSelector label="Type 1:" {types} bind:value={$select1} other={$select2} />
@@ -14,6 +13,7 @@
 </section>
 
 <script>
+	import Dialog from '$lib/Dialog.svelte'
 	import TypeChart from '$lib/TypeChart.svelte'
 	import TypeSelector from '$lib/TypeSelector.svelte'
 	import CompatibilityReport from '$lib/CompatibilityReport.svelte'

@@ -2,12 +2,9 @@
 	{label}
 	<select bind:value disabled={label !== 'Type 1:' && other === ''}>
 		<option value="" selected>None</option>
-		{#each types as type}
-			<option
-				value={type._id}
-				disabled={other === type._id}
-			>
-				{type.emoji} {type.name.en}
+		{#each types as { _id, name, emoji }}
+			<option value={_id} disabled={other === _id}>
+				{emoji} {name.en}
 			</option>
 		{/each}
 	</select>
