@@ -1,34 +1,9 @@
 <dl>
-	<dt>Weakness (4x):</dt>
-	<dd>
-		{#each weakness[1] as emoji}
-			<span>{emoji}</span>
-		{/each}
-	</dd>
-	<dt>Weakness (2x):</dt>
-	<dd>
-		{#each weakness_1 as emoji}
-			<span>{emoji}</span>
-		{/each}
-	</dd>
-	<dt>Resistance (0.5x):</dt>
-	<dd>
-		{#each resistance_1 as emoji}
-			<span>{emoji}</span>
-		{/each}
-	</dd>
-	<dt>Resistance (0.25x):</dt>
-	<dd>
-		{#each resistance[1] as emoji}
-			<span>{emoji}</span>
-		{/each}
-	</dd>
-	<dt>Immunity (0x):</dt>
-	<dd>
-		{#each immunity as emoji}
-			<span>{emoji}</span>
-		{/each}
-	</dd>
+	<Compatibility label="Weakness (4x):" list={weakness[1]} />
+	<Compatibility label="Weakness (2x):" list={weakness_1} />
+	<Compatibility label="Resistance (0.5x):" list={resistance_1} />
+	<Compatibility label="Resistance (0.25x):" list={resistance[1]} />
+	<Compatibility label="Immunity (0x):" list={immunity} />
 </dl>
 
 <style>
@@ -37,37 +12,47 @@
 		grid-template-columns: auto 1fr;
 		gap: 0 .5em;
 	}
-
-	dt {
-		text-align: right;
-	}
 </style>
 
 <script>
+	import Compatibility from './Compatibility.svelte'
+
 	export let type1, type2
 
-	$: getCompatibility = (c) => {
-		const list = [
-			type1[c]?.map(t => t.emoji),
-			type2[c]?.map(t => t.emoji),
-		].flatMap(i => i).filter(Boolean)
+	$: getCompatibility = c => {
+		const list = [type1[c], type2[c]]
+			.flatMap(i => i)
+			.filter(Boolean)
 
 		const instances = {}
-		for (let i of list) {
-			instances[i] = instances[i] ? instances[i] + 1 : 1
+		for (let { emoji, name } of list) {
+			instances[emoji] = [
+				instances[emoji] ? instances[emoji][0] + 1 : 1,
+				name
+			]
 		}
 
 		return [
-			Object.entries(instances).filter(([, instance]) => instance === 1).map(([emoji]) => emoji),
-			Object.entries(instances).filter(([, instance]) => instance === 2).map(([emoji]) => emoji),
+			processInstances(instances, 1),
+			processInstances(instances, 2),
 		]
 	}
 
 	$: weakness = getCompatibility('weakness')
 	$: resistance = getCompatibility('resistance')
 	$: immunity = getCompatibility('immunity').flatMap(i => i)
-	$: normal = weakness[0].filter(([emoji]) => resistance[0].includes(emoji))
+	$: normal = weakness[0].filter(({ emoji }) => processEmoji(resistance[0], emoji))
 
-	$: weakness_1 = weakness[0].filter(w => !normal.includes(w) && !immunity.includes(w))
-	$: resistance_1 = resistance[0].filter(r => !normal.includes(r) && !immunity.includes(r))
+	$: weakness_1 = weakness[0].filter(({ emoji }) => !processEmoji(normal, emoji) && !processEmoji(immunity, emoji))
+	$: resistance_1 = resistance[0].filter(({ emoji }) => !processEmoji(normal, emoji) && !processEmoji(immunity, emoji))
+
+	function processInstances(instances, count) {
+		return Object.entries(instances)
+			.filter(([, [instance]]) => instance === count)
+			.map(([emoji, [, name]]) => ({ emoji, name }))
+	}
+
+	function processEmoji(list, emoji) {
+		return list.map(t => t.emoji).includes(emoji)
+	}
 </script>
