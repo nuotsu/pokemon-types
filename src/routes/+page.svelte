@@ -1,12 +1,25 @@
-<h1>Neo Types</h1>
+<header class="px-4 text-center">
+	<h1 class="h1">Neo Types</h1>
 
-<Dialog trigger="Type Chart">
-	<TypeChart {types} />
-</Dialog>
+	<ul class="flex flex-wrap gap-4 justify-center">
+		<li>
+			<Dialog className="w-full max-w-xs p-0" trigger="Type list">
+				<TypeList {types} />
+			</Dialog>
+		</li>
+		<li>
+			<Dialog trigger="Type chart">
+				<TypeChart {types} />
+			</Dialog>
+		</li>
+	</ul>
+</header>
 
-<section>
-	<TypeSelector label="Type 1:" {types} bind:value={$select1} other={$select2} />
-	<TypeSelector label="Type 2:" {types} bind:value={$select2} other={$select1} />
+<section class="max-w-sm mx-auto px-4">
+	<div class="grid grid-cols-2 gap-4">
+		<TypeSelector label="Type 1:" {types} bind:value={$select1} other={$select2} />
+		<TypeSelector label="Type 2:" {types} bind:value={$select2} other={$select1} />
+	</div>
 
 	<CompatibilityReport {type1} {type2} />
 	<SpecReport {type1} {type2} {specs} />
@@ -14,6 +27,7 @@
 
 <script>
 	import Dialog from '$lib/Dialog.svelte'
+	import TypeList from '$lib/TypeList.svelte'
 	import TypeChart from '$lib/TypeChart.svelte'
 	import TypeSelector from '$lib/TypeSelector.svelte'
 	import CompatibilityReport from '$lib/CompatibilityReport.svelte'

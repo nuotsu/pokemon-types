@@ -6,4 +6,23 @@
 	summary {
 		cursor: pointer;
 	}
+
+	details[open] > *:not(summary) {
+		animation: details .2s ease-in-out forwards;
+	}
+
+	@keyframes details {
+		from {
+			opacity: 0;
+			translate: 0 -1rem;
+		}
+	}
+}
+
+@layer components {
+	._h {
+		font-weight: bold;
+	}
+	.h1 { @apply _h; }
+	.h2 { @apply _h; }
 }

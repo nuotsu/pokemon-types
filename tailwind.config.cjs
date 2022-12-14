@@ -6,6 +6,7 @@ module.exports = {
 			colors: {
 				ink: '#000',
 				paper: '#fff',
+				accent: '#f00',
 			}
 		},
 	},

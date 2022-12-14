@@ -1,10 +1,14 @@
-<dl>
-	<Compatibility label="Weakness (4x):" list={weakness[1]} />
-	<Compatibility label="(2x):" list={weakness_1} />
-	<Compatibility label="Resistance (0.5x):" list={resistance_1} />
-	<Compatibility label="(0.25x):" list={resistance[1]} />
-	<Compatibility label="Immunity (0x):" list={immunity} />
-</dl>
+<article>
+	<h2 class="h2">Compatibility</h2>
+
+	<dl>
+		<Compatibility label="Weakness (4x):" list={weakness[1]} />
+		<Compatibility label="(2x):" list={weakness_1} />
+		<Compatibility label="Resistance (0.5x):" list={resistance_1} />
+		<Compatibility label="(0.25x):" list={resistance[1]} />
+		<Compatibility label="Immunity (0x):" list={immunity} />
+	</dl>
+</article>
 
 <style>
 	dl {

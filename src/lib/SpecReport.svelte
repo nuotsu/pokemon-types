@@ -1,14 +1,18 @@
-<dl>
-	{#each specs as spec}
-		{@const factor = getSpec(spec)}
+<article>
+	<h2 class="h2">Spec</h2>
 
-		<dt>{spec.name}</dt>
-		<dd>
-			<meter min="0" max="100" value={75 * factor.value} />
-			{factor.arrows}
-		</dd>
-	{/each}
-</dl>
+	<dl>
+		{#each specs as spec}
+			{@const factor = getSpec(spec)}
+
+			<dt>{spec.name}</dt>
+			<dd>
+				<meter min="0" max="100" value={75 * factor.value} />
+				{factor.arrows}
+			</dd>
+		{/each}
+	</dl>
+</article>
 
 <style>
 	dl {
