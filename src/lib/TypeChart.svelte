@@ -2,7 +2,7 @@
 	<table bind:clientHeight style:--height="{clientHeight}px">
 		<thead>
 			<tr>
-				<th>👉</th>
+				<th><span>👉</span></th>
 				{#each types as type}
 					<th class="column">
 						<Type {...type} />
@@ -58,6 +58,23 @@
 		aspect-ratio: 1;
 		width: 1.5em;
 		@apply text-2xl;
+	}
+
+	tr > th:first-of-type {
+		position: sticky;
+		left: -2px;
+		z-index: 1;
+	}
+
+	tr > th:first-of-type::before {
+		content: '';
+		position: absolute;
+		inset: 0 -.5em 0 0;
+		background: linear-gradient(to right, #fff 50%, #fff0);
+	}
+
+	tr > th:first-of-type > :global(*) {
+		position: relative;
 	}
 </style>
 

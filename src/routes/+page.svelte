@@ -17,8 +17,8 @@
 
 <section class="max-w-sm mx-auto px-4">
 	<div class="grid grid-cols-2 gap-4">
-		<TypeSelector label="Type 1:" {types} bind:value={$select1} other={$select2} />
-		<TypeSelector label="Type 2:" {types} bind:value={$select2} other={$select1} />
+		<TypeSelector label="Type 1" {types} bind:value={$select1} other={$select2} />
+		<TypeSelector label="Type 2" {types} bind:value={$select2} other={$select1} />
 	</div>
 
 	<CompatibilityReport {type1} {type2} />

@@ -10,7 +10,10 @@ export default defineType({
 	fieldsets: [
 		{
 			name: 'compatibility',
-			title: 'Compatibility',
+			options: { columns: 2 },
+		},
+		{
+			name: 'display',
 			options: { columns: 2 },
 		},
 	],
@@ -41,6 +44,13 @@ export default defineType({
 		defineField({
 			name: 'emoji',
 			type: 'string',
+			fieldset: 'display',
+		}),
+		defineField({
+			name: 'color',
+			type: 'string',
+			placeholder: '#ffffff',
+			fieldset: 'display',
 		}),
 		defineField({
 			name: 'weakness',
@@ -105,9 +115,10 @@ export default defineType({
 			title: 'name.en',
 			subtitle: 'name.jp',
 			emoji: 'emoji',
+			color: 'color',
 		},
-		prepare: ({ emoji, ...selection }) => ({
-			media: <>{emoji}</>,
+		prepare: ({ emoji, color, ...selection }) => ({
+			media: <Preview emoji={emoji} color={color} />,
 			...selection,
 		})
 	},
@@ -124,3 +135,21 @@ export default defineType({
 		},
 	],
 })
+
+
+const Preview = ({ emoji, color }: PreviewProps) => (
+	<span
+		style={{
+			display: 'grid',
+			aspectRatio: 1,
+			placeContent: 'center',
+			width: '100%',
+			backgroundColor: color,
+		}}
+	>{emoji}</span>
+)
+
+interface PreviewProps {
+	emoji: string
+	color: string
+}

@@ -24,6 +24,11 @@
 	dt {
 		text-align: right;
 	}
+
+	dd {
+		display: grid;
+		grid-template-columns: 1fr 2em;
+	}
 </style>
 
 <script>
