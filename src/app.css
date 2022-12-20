@@ -32,4 +32,8 @@
 	}
 	.h1 { @apply _h; }
 	.h2 { @apply _h; }
+
+	.subdued {
+		@apply text-center text-ink/20 text-sm;
+	}
 }

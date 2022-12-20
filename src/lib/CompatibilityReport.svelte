@@ -18,15 +18,14 @@
 			label="Immunity"
 			list1={{ label: '0x', list: immunity }}
 		/>
+
+		{#if !Object.keys(type1).length && !Object.keys(type2).length}
+			<p class="subdued">
+				No compatibility info
+			</p>
+		{/if}
 	</div>
 </fieldset>
-
-<style>
-	div:empty::before {
-		content: 'No compatibility info';
-		@apply text-ink/20 text-sm;
-	}
-</style>
 
 <script>
 	import CompatibilityFieldset from './CompatibilityFieldset.svelte'

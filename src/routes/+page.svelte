@@ -1,4 +1,4 @@
-<header class="px-4 text-center">
+<header class="mb-4 px-4 text-center">
 	<h1 class="h1">Neo Types</h1>
 
 	<ul class="flex flex-wrap gap-4 justify-center">
@@ -15,7 +15,9 @@
 	</ul>
 </header>
 
-<section class="max-w-sm mx-auto px-4">
+<section class="grid gap-4 max-w-sm mx-auto px-4">
+	<Thumbnail/>
+
 	<div class="grid grid-cols-2 gap-4">
 		<TypeSelector label="Type 1" {types} bind:value={$select1} other={$select2} />
 		<TypeSelector label="Type 2" {types} bind:value={$select2} other={$select1} />
@@ -29,6 +31,7 @@
 	import Dialog from '$lib/Dialog.svelte'
 	import TypeList from '$lib/TypeList.svelte'
 	import TypeChart from '$lib/TypeChart.svelte'
+	import Thumbnail from '$lib/Thumbnail.svelte'
 	import TypeSelector from '$lib/TypeSelector.svelte'
 	import CompatibilityReport from '$lib/CompatibilityReport.svelte'
 	import SpecReport from '$lib/SpecReport.svelte'
