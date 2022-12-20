@@ -1,20 +1,29 @@
-<article>
-	<h2 class="h2">Compatibility</h2>
+<fieldset>
+	<legend class="h2">Compatibility</legend>
 
-	<dl>
-		<Compatibility label="Weakness (4x):" list={weakness[1]} />
-		<Compatibility label="(2x):" list={weakness_1} />
-		<Compatibility label="Resistance (0.5x):" list={resistance_1} />
-		<Compatibility label="(0.25x):" list={resistance[1]} />
-		<Compatibility label="Immunity (0x):" list={immunity} />
-	</dl>
-</article>
+	<h3 class="h3">Weakness</h3>
+	<Compatibility label="4x" list={weakness[1]} />
+	<Compatibility label="2x" list={weakness_1} />
+
+	<h3 class="h3">Resistance</h3>
+	<Compatibility label="0.5x" list={resistance_1} />
+	<Compatibility label="0.25x" list={resistance[1]} />
+
+	{#if immunity.length}
+		<h3 class="h3">Immunity</h3>
+		<Compatibility label="0x" list={immunity} />
+	{/if}
+</fieldset>
 
 <style>
 	dl {
 		display: grid;
 		grid-template-columns: auto 1fr;
 		gap: 0 .5em;
+	}
+
+	h3:not(:first-of-type) {
+		@apply border-t border-ink/10 mt-2;
 	}
 </style>
 

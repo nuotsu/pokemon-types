@@ -1,5 +1,5 @@
-<article>
-	<h2 class="h2">Spec</h2>
+<fieldset>
+	<legend class="h2">Spec</legend>
 
 	<dl>
 		{#each specs as spec}
@@ -12,7 +12,7 @@
 			</dd>
 		{/each}
 	</dl>
-</article>
+</fieldset>
 
 <style>
 	dl {
@@ -28,6 +28,7 @@
 	dd {
 		display: grid;
 		grid-template-columns: 1fr 2em;
+		gap: 0 .5em;
 	}
 </style>
 

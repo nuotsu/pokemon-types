@@ -37,8 +37,8 @@
 
 <style>
 	th, td {
-		border: 1px solid;
 		text-align: center;
+		@apply border border-ink/10;
 	}
 
 	.column {

@@ -18,7 +18,6 @@
 <style>
 	small {
 		display: block;
-		font-size: x-small;
 	}
 
 	select {

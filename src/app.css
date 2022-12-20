@@ -13,6 +13,11 @@
 		animation: details .2s ease-in-out forwards;
 	}
 
+	fieldset {
+		padding: 0 .5em .5em;
+		@apply border border-ink/10;
+	}
+
 	@keyframes details {
 		from {
 			opacity: 0;
