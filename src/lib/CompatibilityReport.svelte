@@ -1,34 +1,35 @@
 <fieldset>
 	<legend class="h2">Compatibility</legend>
 
-	<h3 class="h3">Weakness</h3>
-	<Compatibility label="4x" list={weakness[1]} />
-	<Compatibility label="2x" list={weakness_1} />
+	<div class="empty:text-center">
+		<CompatibilityFieldset
+			label="Weakness"
+			list1={{ label: '4x', list: weakness[1] }}
+			list2={{ label: '2x', list: weakness_1 }}
+		/>
 
-	<h3 class="h3">Resistance</h3>
-	<Compatibility label="0.5x" list={resistance_1} />
-	<Compatibility label="0.25x" list={resistance[1]} />
+		<CompatibilityFieldset
+			label="Resistance"
+			list1={{ label: '0.5x', list: resistance_1 }}
+			list2={{ label: '0.25x', list: resistance[1] }}
+		/>
 
-	{#if immunity.length}
-		<h3 class="h3">Immunity</h3>
-		<Compatibility label="0x" list={immunity} />
-	{/if}
+		<CompatibilityFieldset
+			label="Immunity"
+			list1={{ label: '0x', list: immunity }}
+		/>
+	</div>
 </fieldset>
 
 <style>
-	dl {
-		display: grid;
-		grid-template-columns: auto 1fr;
-		gap: 0 .5em;
-	}
-
-	h3:not(:first-of-type) {
-		@apply border-t border-ink/10 mt-2;
+	div:empty::before {
+		content: 'No compatibility info';
+		@apply text-ink/20 text-sm;
 	}
 </style>
 
 <script>
-	import Compatibility from './Compatibility.svelte'
+	import CompatibilityFieldset from './CompatibilityFieldset.svelte'
 
 	export let type1, type2
 
