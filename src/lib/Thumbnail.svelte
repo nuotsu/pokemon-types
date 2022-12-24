@@ -27,7 +27,7 @@
 	}
 
 	label:not(.image) {
-		@apply p-2 border border-ink/10;
+		@apply p-2 border border-dashed border-ink/10;
 	}
 </style>
 

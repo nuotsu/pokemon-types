@@ -5,8 +5,16 @@
 @tailwind utilities;
 
 @layer base {
+	body {
+		@apply bg-ink/5;
+	}
+
 	summary {
 		cursor: pointer;
+	}
+
+	summary::-webkit-details-marker {
+		display: none;
 	}
 
 	details[open] > *:not(summary) {
@@ -14,8 +22,8 @@
 	}
 
 	fieldset {
-		padding: 0 .5em .5em;
-		@apply border border-ink/10;
+		padding: 0 .8em .8em;
+		@apply bg-paper rounded-md;
 	}
 
 	@keyframes details {
