@@ -1,6 +1,6 @@
 {#each types as { emoji, name, color, spec }}
-	<details>
-		<summary style:--color="{color}aa">
+	<details style:--color="{color}40">
+		<summary>
 			<Type {emoji} {name} />
 
 			{#if name.en === 'H2O'}
@@ -14,7 +14,7 @@
 			{/if}
 		</summary>
 
-		<dl style:border-color={color}>
+		<dl>
 			<dt>Spec</dt>
 			<dd>🔺 {spec.inc.name}</dd>
 
@@ -37,7 +37,11 @@
 		align-items: center;
 		gap: .5em 1em;
 		padding: 0.5em 1em;
-		@apply bg-paper/80 backdrop-blur-sm hover:bg-[var(--color)];
+		@apply backdrop-blur-sm hover:bg-[var(--color)];
+	}
+
+	details[open] {
+		background-color: var(--color);
 	}
 
 	details[open] summary {
@@ -59,8 +63,6 @@
 		padding: .5em 1em;
 		margin-left: .5em;
 		margin-bottom: 1em;
-		border-left: 1px solid;
-		border-bottom: 1px solid;
 	}
 </style>
 

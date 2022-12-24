@@ -1,4 +1,4 @@
-<neo-type title={name?.en} style:background-color="{color}80">
+<neo-type class="anim-zoom" title={name?.en} style:background-color="{color}80">
 	{emoji}
 </neo-type>
 

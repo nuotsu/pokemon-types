@@ -1,6 +1,6 @@
 {#if list.length}
 	<div>
-		{#each list as type}
+		{#each list as type (type._id)}
 			<Type {...type} />
 		{/each}
 		<span>{label}</span>

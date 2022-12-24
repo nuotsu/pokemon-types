@@ -15,15 +15,21 @@ export default defineType({
 		defineField({
 			name: 'name',
 			type: 'string',
-		})
+		}),
+		defineField({
+			name: 'color',
+			type: 'string',
+			placeholder: '#ffffff',
+		}),
 	],
 	preview: {
 		select: {
 			title: 'name',
+			color: 'color',
 		},
-		prepare: ({ ...selection }) => ({
+		prepare: ({ color, ...selection }) => ({
 			...selection,
-			media: VscSymbolRuler,
+			media: () => <VscSymbolRuler style={{ color }} />,
 		})
 	}
 })

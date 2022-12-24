@@ -37,3 +37,16 @@
 		@apply text-center text-ink/20 text-sm;
 	}
 }
+
+@layer utilities {
+	.anim-zoom {
+		animation: zoom .2s ease-in-out forwards;
+	}
+
+	@keyframes zoom {
+		from {
+			opacity: 0;
+			scale: .5;
+		}
+	}
+}

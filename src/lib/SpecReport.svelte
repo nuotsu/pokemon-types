@@ -7,7 +7,7 @@
 
 			<dt>{spec.name}</dt>
 			<dd>
-				<meter min="0" max="100" value={75 * factor.value} />
+				<meter style:--color={spec.color} min="0" max="100" value={75 * factor.value} />
 				{factor.arrows}
 			</dd>
 		{/each}
@@ -27,8 +27,36 @@
 
 	dd {
 		display: grid;
-		grid-template-columns: 1fr 2em;
+		grid-template-columns: 1fr 2.5em;
 		gap: 0 .5em;
+		align-items: center;
+	}
+
+	meter {
+		-moz-appearance: none;
+		width: 100%;
+		height: .5em;
+		background: none;
+		overflow: hidden;
+		@apply bg-ink/10 rounded-full;
+	}
+
+	meter::-webkit-meter-bar {
+		background: none;
+		border: 0;
+		height: .5em;
+	}
+
+	meter::-webkit-meter-optimum-value {
+		background: none;
+		background-color: var(--color);
+		background-size: 100% 100%;
+		transition: width .5s;
+	}
+
+	meter::-moz-meter-bar {
+		background: none;
+		background-color: var(--color);
 	}
 </style>
 

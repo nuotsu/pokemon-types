@@ -23,6 +23,7 @@
 		"@sanity/client": "^3.4.1",
 		"@sanity/orderable-document-list": "^1.0.2",
 		"groq": "^2.33.2",
-		"react-icons": "^4.7.1"
+		"react-icons": "^4.7.1",
+		"vanilla-tilt": "^1.8.0"
 	}
 }
