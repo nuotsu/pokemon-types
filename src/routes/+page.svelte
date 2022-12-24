@@ -1,5 +1,5 @@
 <header class="mb-4 px-4 text-center">
-	<h1 class="h1">Neo Types</h1>
+	<h1 class="h1 mb-4">Neo Types</h1>
 
 	<ul class="flex flex-wrap gap-4 justify-center">
 		<li>
@@ -15,7 +15,7 @@
 	</ul>
 </header>
 
-<section class="grid gap-4 max-w-sm mx-auto px-4">
+<section class="grid gap-6 max-w-sm mx-auto px-4">
 	<Thumbnail/>
 
 	<div class="grid grid-cols-2 gap-4">

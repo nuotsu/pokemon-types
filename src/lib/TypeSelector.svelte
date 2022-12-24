@@ -4,7 +4,9 @@
 	<select
 		id={label}
 		bind:value disabled={label !== 'Type 1' && other === ''}
-		style:background-image={color ? `linear-gradient(to bottom right, ${color}80, ${color}00)` : null}
+		style:--color={color ? `${color}80` : null}
+		style:--color-mid={color ? `${color}20` : null}
+		style:--color-light={color ? `${color}00` : null}
 	>
 		<option value="" selected>None</option>
 		{#each types as { _id, name, emoji }}
@@ -27,7 +29,9 @@
 		width: 100%;
 		padding: 0.5em;
 		text-align: center;
-		@apply rounded-md shadow-xl;
+		background-image: linear-gradient(to bottom right, var(--color), var(--color-light));
+		transition: box-shadow .6s ease-in-out;
+		@apply rounded-md shadow-xl shadow-[var(--color-mid)];
 	}
 </style>
 
